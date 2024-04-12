@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 from googleapiclient.discovery import build
 from transformers import pipeline
 import pandas as pd
+from collections import Counter
 
 app = Flask(__name__)
 
@@ -56,13 +57,32 @@ def process_model_output(model_output):
     if not model_output:  # Check if the list is not empty
         return None
 
-    # Find the dictionary with the highest score
-    max_label = max(model_output, key=lambda x: x["score"])
+    # Initialize variables to store the maximum score and corresponding label
+    max_score = float("-inf")
+    max_label = None
 
-    # Extract the label from the dictionary
-    label = max_label["label"]
+    # Iterate over each element in the model_output list
+    for sublist in model_output:
+        # If the element is not a list, skip it
+        if not isinstance(sublist, list):
+            continue
 
-    return label
+        # Iterate over each dictionary in the sublist
+        for output in sublist:
+            # If the element is not a dictionary, skip it
+            if not isinstance(output, dict):
+                continue
+
+            # Extract the score and label from the current dictionary
+            score = output.get("score", 0.0)
+            label = output.get("label", "")
+
+            # Update max_score and max_label if the current score is greater
+            if score > max_score:
+                max_score = score
+                max_label = label
+
+    return max_label
 
 
 @app.route("/")
@@ -75,8 +95,7 @@ def analyze_sentiment():
     # Extract video URL from the request
     video_url = request.json.get("video_url")
 
-    # Replace 'YOUR_API_KEY' with your actual YouTube API key
-    api_key = "AIzaSyDqsVQaYHzJ7Xjr3JDOZdv1lJwmShVMuNk"
+    api_key = "asdf"
 
     # Perform sentiment analysis
     video_title, comments = get_youtube_comments(video_url, api_key)
@@ -85,9 +104,36 @@ def analyze_sentiment():
     for comment in comments:
         model_output = classifier(comment)
         sentiment_result = process_model_output(model_output)
-        sentiment_results.append(sentiment_result)
+        sentiment_results.append(
+            (comment, sentiment_result)
+        )  # Include comment with sentiment result
 
-    return jsonify({"video_title": video_title, "sentiment_results": sentiment_results})
+    # Calculate sentiment summary
+    sentiment_counts = Counter(
+        sentiment_result for _, sentiment_result in sentiment_results
+    )
+    total_comments = len(sentiment_results)
+    sentiment_summary = {
+        "positive": sentiment_counts.get("positive", 0),
+        "negative": sentiment_counts.get("negative", 0),
+        "neutral": sentiment_counts.get("neutral", 0),
+        "total_comments": total_comments,
+    }
+
+    # Calculate overall sentiment score
+    positive_comments = sentiment_counts.get("positive", 0)
+    negative_comments = sentiment_counts.get("negative", 0)
+    overall_sentiment_score = (positive_comments - negative_comments) / total_comments
+
+    # Construct the response
+    response = {
+        "video_title": video_title,
+        "sentiment_summary": sentiment_summary,
+        "overall_sentiment_score": overall_sentiment_score,
+        "sentiment_results": sentiment_results,  # Include comments with sentiment results
+    }
+
+    return jsonify(response)
 
 
 if __name__ == "__main__":
