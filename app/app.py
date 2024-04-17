@@ -1,9 +1,19 @@
-from flask import Flask, request, jsonify, Response, render_template
+from flask import (
+    Flask,
+    request,
+    jsonify,
+    Response,
+    render_template,
+    redirect,
+    url_for,
+    jsonify,
+)
 from flask_cors import CORS
 from transformers import pipeline, TFPegasusForConditionalGeneration, AutoTokenizer
 import pandas as pd
 import os
 import re
+import json
 from googleapiclient.discovery import build
 
 
@@ -136,8 +146,8 @@ def analyze_comments():
 
     df = pd.DataFrame(batch_results)
 
-    print(df.info())
-    print(df)
+    # print(df.info())
+    # print(df)
 
     # Convert sentiment counts to a list of dictionaries
     sentiment_counts = df["Label"].value_counts().reset_index()
@@ -164,14 +174,23 @@ def analyze_comments():
         summary_by_sentiment[sentiment] = summary_text
 
     # Return the results as JSON
-    return jsonify(
-        {
-            "video_title": video_title,
-            "sentiment_counts": sentiment_counts_list,
-            "sorted_comments": sorted_comments_list,
-            "summary_by_sentiment": summary_by_sentiment,
-        }
-    )
+    analysis_data = {
+        "video_title": video_title,
+        "sentiment_counts": sentiment_counts_list,
+        "sorted_comments": sorted_comments_list,
+        "summary_by_sentiment": summary_by_sentiment,
+    }
+
+    return redirect(url_for("results", data=jsonify(analysis_data)))
+
+
+@app.route("/results", methods=["GET"])
+def results():
+    analysis_data = json.loads(
+        request.args.get("data", "{}")
+    )  # Default empty data if not found
+    # Use analysis_data to render the template
+    return render_template("results.html", analysis_data=analysis_data)
 
 
 @app.route("/download_csv", methods=["POST"])
@@ -194,3 +213,6 @@ def home():
 
 if __name__ == "__main__":
     app.run()
+
+
+# https://www.youtube.com/watch?v=JyKvwhK5AzA

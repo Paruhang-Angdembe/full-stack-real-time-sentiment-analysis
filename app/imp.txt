@@ -1,0 +1,213 @@
+github action:,
+gcp account, 
+
+
+
+Video Title: These YouTubers Opened up a NYC Ice Cream Shop Together - The Karat Podcast: Episode 3
+
+sentiment Counts:
+[
+    {
+        "Count": 12,
+        "Sentiment": "neutral"
+    },
+    {
+        "Count": 3,
+        "Sentiment": "gratitude"
+    },
+    {
+        "Count": 3,
+        "Sentiment": "love"
+    },
+    {
+        "Count": 3,
+        "Sentiment": "admiration"
+    },
+    {
+        "Count": 1,
+        "Sentiment": "confusion"
+    },
+    {
+        "Count": 1,
+        "Sentiment": "joy"
+    },
+    {
+        "Count": 1,
+        "Sentiment": "disappointment"
+    },
+    {
+        "Count": 1,
+        "Sentiment": "remorse"
+    },
+    {
+        "Count": 1,
+        "Sentiment": "approval"
+    },
+    {
+        "Count": 1,
+        "Sentiment": "realization"
+    },
+    {
+        "Count": 1,
+        "Sentiment": "annoyance"
+    }
+]
+
+sorted comments:
+[
+    {
+        "Comment": "Great podcast, and insightful things discussed amongst the three of you.",
+        "Label": "admiration",
+        "SerialNo": 28
+    },
+    {
+        "Comment": "ugh this is such a gem of a conversation.",
+        "Label": "admiration",
+        "SerialNo": 25
+    },
+    {
+        "Comment": "Great interview!",
+        "Label": "admiration",
+        "SerialNo": 8
+    },
+    {
+        "Comment": "This comment section is so shit and invalidating. This guy sacrificed so much, friendships and happiness just so he can go to an overly hyped prestigious school. Did he really have to sacrifice that much? He could have had both greater happiness and freedom and also manage to go to a relatively good school. All of you guys are constantly reprimanding him to “be on the grind” when this guy probably grinded far longer and far greater and faced the challenges of such",
+        "Label": "annoyance",
+        "SerialNo": 26
+    },
+    {
+        "Comment": "I found my ppl. Subscribed. 🎉",
+        "Label": "approval",
+        "SerialNo": 16
+    },
+    {
+        "Comment": "I don’t understand why it is Asian culture. People say no pain no gain in English. Is it the same thing that Asian parents try to hamper into their children’s minds?",
+        "Label": "confusion",
+        "SerialNo": 1
+    },
+    {
+        "Comment": "Seeing the comment section makes me want to share my thought (and finally made a channel 😅). I resonate with Eric’s thought, I don’t think everyone should take it literally as the phrase he said about “suffering doesn’t means success so we shouldn’t glorify it”<br><br>I believe suffering might be part of growing and the process, so we don’t really have to avoid it in life. But if you suffer because you don’t know what’s your goal is, that’s a problem. I think when sharing his thoughts on “suffering on being a good Asian Student”, he wasn’t had a clear goal yet, so getting to Harvard after all of the efforts and sacrifices feels depressing.<br><br>On my own experience, life might be full of regrets. Someone who had work hard during study year even sacrificing their social/play time for focusing on lesson might regret it because they might have limited “friend and fun memories” even though they got a job before graduating. While the other who had spend more time for connecting with other even by sacrificing their study time might regrets their decision because it’s hard for them to land a job (on a certain work field) or maybe lacking acknowledgment from their family, even though they got tons of other opportunities through their connection. I believe when they have a clear or better goals in mind, their sacrifices tho it’s hard it will feels bearable and fulfilling than an endless suffering of life 😊",
+        "Label": "disappointment",
+        "SerialNo": 10
+    },
+    {
+        "Comment": "I am loving these interviews! I spent the whole day cleaning my room and these interviews are so goood! Thanks for all this!",
+        "Label": "gratitude",
+        "SerialNo": 2
+    },
+    {
+        "Comment": "🙏🏾🙏🏾🙏🏾 thank you for honestly sharing a piece of yourself",
+        "Label": "gratitude",
+        "SerialNo": 11
+    },
+    {
+        "Comment": "Loved the take on being a “good Asian student” and now enjoying the journey. ❤ felt like he was describing me:) thank you SO much for sharing.",
+        "Label": "gratitude",
+        "SerialNo": 20
+    },
+    {
+        "Comment": "Literally a gem of a coversation, so glad I found this!",
+        "Label": "joy",
+        "SerialNo": 9
+    },
+    {
+        "Comment": "Love this podcast sm!",
+        "Label": "love",
+        "SerialNo": 23
+    },
+    {
+        "Comment": "Loved it ...",
+        "Label": "love",
+        "SerialNo": 27
+    },
+    {
+        "Comment": "If i can turn back time. I will spend my time most for studying holy bible n not wasting my time for drugs coz what I find now how much time u will have to do what God wants u to do. N many of my friends ppl that I love even my husband death can&#39;t make me sure that they will be in heaven one day. So my goal is how can I have my own &quot;home&quot; with the best quality structure of it in heaven. Jesus bless us all I believe many of youth generation will find wisdom of God coz the end is so near n this world is more wicker everyday. ❤️",
+        "Label": "love",
+        "SerialNo": 4
+    },
+    {
+        "Comment": "This podcast is very personal. Not like any other I&#39;ve really seen. Here&#39;s a sub",
+        "Label": "neutral",
+        "SerialNo": 7
+    },
+    {
+        "Comment": "They&#39;re misdescribing it. Your punishment is becoming that of what you wanted.",
+        "Label": "neutral",
+        "SerialNo": 3
+    },
+    {
+        "Comment": "<a href=\"https://www.youtube.com/watch?v=JyKvwhK5AzA&amp;t=1740\">29:00</a>",
+        "Label": "neutral",
+        "SerialNo": 22
+    },
+    {
+        "Comment": "I too grew up thinking that you couldn&#39;t succeed without suffering. It was a mindset my Asian parents hammered into me, and something I strive to move away from every day.",
+        "Label": "neutral",
+        "SerialNo": 21
+    },
+    {
+        "Comment": "Why not just use rock paper scissor to determine with whose doing eye contact? The two loser will do eye contacts for question cards. And another rock paper scissor to decide who ask the question first..",
+        "Label": "neutral",
+        "SerialNo": 17
+    },
+    {
+        "Comment": "If you&#39;re in the college route, just finish the 4 years bro. Then you&#39;re free. If you learned something, that&#39;s forever helpful in your life",
+        "Label": "neutral",
+        "SerialNo": 18
+    },
+    {
+        "Comment": "God dam. I clicked on the link thinking it&#39;s an interview and it&#39;s just a couple of guys shooting the breeze with each other under the guise of a podcast that&#39;s been recorded by a camera 🤦.",
+        "Label": "neutral",
+        "SerialNo": 6
+    },
+    {
+        "Comment": "<a href=\"https://www.youtube.com/watch?v=JyKvwhK5AzA&amp;t=1768\">29:28</a>",
+        "Label": "neutral",
+        "SerialNo": 13
+    },
+    {
+        "Comment": "He woule be milking cows in India instead of bragging about a million raised",
+        "Label": "neutral",
+        "SerialNo": 12
+    },
+    {
+        "Comment": "If you came here from the short, you&#39;re welcome <a href=\"https://www.youtube.com/watch?v=JyKvwhK5AzA&amp;t=1026\">17:06</a>",
+        "Label": "neutral",
+        "SerialNo": 5
+    },
+    {
+        "Comment": "Not everyone has the luxury to escape their 9-5 and go into entrepreneurship for their passion like you guys have. Some will make it and succeed and some won&#39;t.  This is just the same stuff everyone has heard over and over again.",
+        "Label": "neutral",
+        "SerialNo": 19
+    },
+    {
+        "Comment": "The culture of being hammered down.",
+        "Label": "neutral",
+        "SerialNo": 14
+    },
+    {
+        "Comment": "<a href=\"https://www.youtube.com/watch?v=JyKvwhK5AzA&amp;t=1915\">31:55</a> that&#39;s good self awareness 😃 it took me a whole two years to realized it, I was in the same spot at you. But something I realized is that I pushed through because I thought I was good at it, because I knew I could push through it even if I didn&#39;t like it. Now imagine what we can do I we push through something that we really enjoy and find purpose on it! Our personal purpose not what the world says of it, regardless of the outcome. Then that&#39;s gold, totally worth the sacrifice",
+        "Label": "realization",
+        "SerialNo": 24
+    },
+    {
+        "Comment": "I regret working so hard in high school.  I wished I would’ve enjoyed being a teen a bit more.",
+        "Label": "remorse",
+        "SerialNo": 15
+    }
+]
+
+Summary by sentiment:
+{
+    "admiration": "On this week's episode of The Big Bang Theory, physicist Stephen Hawking, comedian Bill O'Reilly and author Stephen King discuss Hawking's new book, Theory of Everything.",
+    "annoyance": "This is one of the most heartbreaking videos I've ever seen.",
+    "approval": "All images are copyrighted.",
+    "confusion": "Do you understand why people in England say \"no pain, no gain\" in English?",
+    "disappointment": "I've been following Eric's vlog for a while now and he's been talking a lot about suffering.",
+    "gratitude": "These interviews are so inspiring!",
+    "joy": "This is one of the most beautiful covers I have ever seen.",
+    "love": "I want to live my life to the best of my ability.",
+    "neutral": "In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at some of the most striking stories from the continent.",
+    "realization": "Two years ago, my husband and I decided to get married.",
+    "remorse": "It's been a year since I graduated from high school."
+}
