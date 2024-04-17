@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Comment Analyzer</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-content">
+        <div class="header">
+          <h1>Discover the power of Sentiment Analysis</h1>
+          <p>
+            A cutting-edge tool that leverages AI to generate concise and
+            informative summaries of your YouTube videos.
+          </p>
+        </div>
+        <div class="input-area">
+          <form id="analyzeComments">
+            <label for="video-url">Enter YouTube Video URL:</label>
+            <input type="text" id="video-url" name="video_url" required />
+            <button type="button" id="analyze-button">Analyze Comments</button>
+          </form>
+        </div>
+        <div class="notes">
+          <strong>Notes:</strong>
+          <ul>
+            <li>Some videos may not have enabled permission to access data.</li>
+            <li>
+              You can summarize the YouTube video having English source content
+              available.
+            </li>
+          </ul>
+        </div>
+        <div class="instructions">
+          <strong
+            >Simple steps to use the YouTube video Analyzer feature:</strong
+          >
+          <ol>
+            <li>Select the YouTube video and copy the URL.</li>
+            <li>
+              Use the analyze feature: Enter the URL of the YouTube video you
+              want to analyze, and click "Analyze it" to see a summary of its
+              content.
+            </li>
+            <li>
+              Video custom summary in your native language: Select a language of
+              your choice from drop-down option and get custom summary.
+            </li>
+            <li>
+              Save and Use: Generate & download your summary video ready to use
+              and share.
+            </li>
+          </ol>
+        </div>
+        <div class="results" id="results">
+          <!-- Results will be populated here -->
+        </div>
+      </div>
+      <div class="advertisement" id="fakeAd">
+        <div class="ad-content">
+          <h2>Subscription</h2>
+          <p>Get 50% off on our premium subscription plan.</p>
+          <button class="ad-button">Learn More</button>
+        </div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

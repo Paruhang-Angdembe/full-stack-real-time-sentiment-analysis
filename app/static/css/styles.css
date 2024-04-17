@@ -1,0 +1,92 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.main-content {
+    flex-basis: 70%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-right: 20px;
+}
+
+.header h1 {
+    color: #000000; 
+    margin-bottom: 10px;
+}
+
+.header p {
+    margin-bottom: 20px;
+}
+
+.input-area {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.input-area input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+}
+
+.input-area button {
+    background-color: #007bff; /* Light Blue Color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.input-area button:hover {
+    background-color: #0056b3; 
+}
+
+.notes, .instructions, .results {
+    background-color: #e7f1ff; /* Lighter Blue Background */
+    padding: 15px;
+    border-left: 4px solid #007bff; 
+    margin-bottom: 20px;
+}
+
+.advertisement {
+    flex-basis: 25%;
+    background-color: #0056b3; 
+    padding: 20px;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.advertisement .ad-content h2 {
+    margin-bottom: 10px;
+}
+
+.advertisement .ad-content p {
+    margin-bottom: 20px;
+}
+
+.advertisement .ad-button {
+    background-color: #0096db; /* Bright Blue Button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.advertisement .ad-button:hover {
+    background-color: #0077b3; /* Hover State for Button */
+}

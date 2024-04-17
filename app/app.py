@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify, Response, render_template
 from flask_cors import CORS
 from transformers import pipeline, TFPegasusForConditionalGeneration, AutoTokenizer
 import pandas as pd
@@ -103,6 +103,7 @@ def get_youtube_comments(video_url, api_key):
 
 @app.route("/analyze_comments", methods=["POST"])
 def analyze_comments():
+    # return "hello"
 
     video_url = request.json.get("video_url")
 
@@ -187,7 +188,8 @@ def download_csv():
 
 @app.route("/")
 def home():
-    return "hello"
+    return render_template("index.html")
+    # return "hello"
 
 
 if __name__ == "__main__":
