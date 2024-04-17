@@ -6,7 +6,6 @@ import os
 import re
 from googleapiclient.discovery import build
 
-
 app = Flask(__name__)
 CORS(app)
 
@@ -17,34 +16,16 @@ classifier = pipeline(
 # Initialize the summarization model and tokenizer
 tokenizer = None
 model = None
-cached_model = None
-cached_tokenizer = None
 
 
 def load_transformer_models():
-
-    global tokenizer, model, cached_tokenizer, cached_model
-
-    if cached_tokenizer and cached_model:
-        tokenizer = cached_tokenizer
-        model = cached_model
-        return
-
-    # Check if model and tokenizer are saved, if not, load from pretrained
-    if os.path.exists("saved_models/my_tokenizer"):
-        tokenizer = AutoTokenizer.from_pretrained(
-            "saved_models/my_tokenizer", local_files_only=True
-        )
-        model = TFPegasusForConditionalGeneration.from_pretrained(
-            "saved_models/my_model", local_files_only=True
-        )
-
-    cached_tokenizer = tokenizer
-    cached_model = model
+    global tokenizer, model
+    tokenizer = AutoTokenizer.from_pretrained("google/pegasus-xsum")
+    model = TFPegasusForConditionalGeneration.from_pretrained("google/pegasus-xsum")
 
 
 # Load transformer models during application startup
-# load_transformer_models()
+load_transformer_models()
 
 
 def get_max_score_label(data_list):
@@ -103,37 +84,28 @@ def get_youtube_comments(video_url, api_key):
 
 @app.route("/analyze_comments", methods=["POST"])
 def analyze_comments():
-
     video_url = request.json.get("video_url")
 
-    api_key = "AIzaSyDOOVneXYot-RYzGBZRAc3IufC7d5kwz-A"
+    api_key = "AIzaSyDeCab2QGoqnTZi_wcMH8XdRqg6Hd91JI4"
 
     video_title, comments = get_youtube_comments(video_url, api_key)
     sentiment_results = []
 
     df = pd.DataFrame(columns=["SerialNo", "Label", "Comment"])
 
-    # Lazy Loading
-    if not tokenizer or not model:
-        load_transformer_models()
-
-    batch_results = []
-
-    # Batch Processing
-    batch_size = 10
-    num_batches = len(comments) // batch_size + 1
-
-    for batch_num in range(num_batches):
-        batch_comments = comments[batch_num * batch_size : (batch_num + 1) * batch_size]
-
-        for i, comment in enumerate(batch_comments, start=batch_num * batch_size + 1):
-            model_output = classifier(comment)
-            max_label = get_max_score_label(model_output[0])
-            batch_results.append(
-                {"SerialNo": i, "Label": max_label, "Comment": comment}
+    for i, comment in enumerate(comments, start=1):
+        model_output = classifier(comment)
+        for element in model_output:
+            max_label = get_max_score_label(element)
+            df = pd.concat(
+                [
+                    df,
+                    pd.DataFrame(
+                        {"SerialNo": [i], "Label": [max_label], "Comment": [comment]}
+                    ),
+                ]
             )
-
-    df = pd.DataFrame(batch_results)
+        print(f"{i}. {max_label}. {comment}. ")
 
     print(df.info())
     print(df)
@@ -185,10 +157,10 @@ def download_csv():
     )
 
 
-@app.route("/")
+@app.route("/home")
 def home():
     return "hello"
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, use_reloader=True)
