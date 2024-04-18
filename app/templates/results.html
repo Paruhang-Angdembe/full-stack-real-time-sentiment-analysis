@@ -11,146 +11,61 @@
       crossorigin="anonymous"
     />
     <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
       rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='css/styles.css') }}"
+      crossorigin="anonymous"
     />
   </head>
   <body>
     <div class="container">
-      <div class="form-group pt-4">
-        <label for="filter-links">Search:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="filter-links"
-          onkeyup="select_item()"
-          placeholder="Search for names..."
-        />
+      <div class="row">
+        <div class="col-span-12"><h1>Real Time Sentiment Analysis</h1></div>
       </div>
-      <div class="d-flex">
-        <div id="row-container" class="p-2 bg-white col-sm-6">
-          <table
-            id="data-table"
-            class="table table-fixed table-striped table-bordered table-hover table-sm"
-          >
-            <thead>
-              <tr>
-                <th class="col-xs-3">First Name</th>
-                <th class="col-xs-3">Last Name</th>
-                <th class="col-xs-6">E-mail</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
 
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-              <tr>
-                <td class="col-xs-3">John</td>
-                <td class="col-xs-3">Doe</td>
-                <td class="col-xs-6">johndoe@email.com</td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="row">
+        <div class="col-lg-4">
+          <div>
+            <h3>Sentiments:</h3>
+          </div>
+          <!-- end page-header -->
+
+          <ul class="list-group">
+            {% for sentiment_count in sentiment_counts %}
+            <li class="list-group-item">
+              <span class="badge">{{ sentiment_count.Count }}</span>
+              {{ sentiment_count.Sentiment }}
+            </li>
+            {% endfor %}
+          </ul>
         </div>
-        <div class="p-2 bg-info col-sm-6">
-          <div id="details">No item selected</div>
+
+        <div
+          class="col-lg-8"
+          data-bs-spy="scroll"
+          data-bs-offset="0"
+          class="scrollspy-example"
+          tabindex="0"
+        >
+          <div>
+            <h3>Sorted Comments:</h3>
+          </div>
+
+          <ul
+            class="list-group list-group-flush"
+            style="overflow-y: scroll; max-height: 570px"
+          >
+            {% for sorted_comment in sorted_comments %}
+            <li class="list-group-item">
+              <span class="badge">{{ sorted_comment.Label }}</span>
+              <p>{{sorted_comment.Comment}}</p>
+            </li>
+            {% endfor %}
+          </ul>
         </div>
       </div>
+      <!-- end row-->
     </div>
+    <!-- end container-->
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script
