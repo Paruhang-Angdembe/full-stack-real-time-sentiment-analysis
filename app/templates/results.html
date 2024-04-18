@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -20,6 +19,8 @@
     <div class="container">
       <div class="row">
         <div class="col-span-12"><h1>Real Time Sentiment Analysis</h1></div>
+
+        <div class="col-span-12"><h2>{{ video_title }}</h2></div>
       </div>
 
       <div class="row">
@@ -34,6 +35,22 @@
             <li class="list-group-item">
               <span class="badge">{{ sentiment_count.Count }}</span>
               {{ sentiment_count.Sentiment }}
+            </li>
+            {% endfor %}
+          </ul>
+
+          <!--Summary-->
+          <div>
+            <h3>Summary by Sentiments:</h3>
+          </div>
+          <!-- end page-header -->
+
+          <ul class="list-group">
+            {% for sentiment, summary in summary_by_sentiment.items() %}
+            <li class="list-group-item">
+              <strong class="badge badge-pill badge-dark" style="float: left"
+                >{{ sentiment }}</strong
+              >: {{ summary }}
             </li>
             {% endfor %}
           </ul>

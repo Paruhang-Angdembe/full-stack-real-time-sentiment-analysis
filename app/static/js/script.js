@@ -1,6 +1,9 @@
 async function analyzeComments() {
   // Get the video URL from the input field
   const videoUrl = document.getElementById("video-url").value;
+  const body = JSON.stringify({ video_url: videoUrl });
+  console.log(videoUrl);
+  console.log(body);
 
   // Check if the URL is empty
   if (!videoUrl) {
@@ -38,6 +41,8 @@ async function analyzeComments() {
 
   // Parse the JSON response
   const data = await response.json();
+  const redirectUrl = data.redirect_url;
+  window.location.href = redirectUrl;
 
   // Display the analysis results (replace this with your own logic for displaying data)
   //   console.log("Video Title:", data.video_title);

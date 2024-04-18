@@ -16,6 +16,7 @@ import os
 import re
 import json
 from googleapiclient.discovery import build
+from google.cloud import storage
 
 
 app = Flask(__name__)
@@ -55,6 +56,41 @@ def load_transformer_models():
     cached_model = model
 
 
+# Googel Cluoud
+
+
+# def load_transformer_models():
+#     global tokenizer, model, cached_tokenizer, cached_model
+
+#     if cached_tokenizer and cached_model:
+#         tokenizer = cached_tokenizer
+#         model = cached_model
+#         return
+
+#     # Initialize GCS client
+#     storage_client = storage.Client()
+
+#     # Access GCS bucket
+#     bucket = storage_client.bucket("your-bucket-name")
+
+#     # Download model files from GCS
+#     blob_tokenizer = bucket.blob("path/to/tokenizer")
+#     blob_model = bucket.blob("path/to/model")
+
+#     tokenizer_path = "/tmp/my_tokenizer"
+#     model_path = "/tmp/my_model"
+
+#     blob_tokenizer.download_to_filename(tokenizer_path)
+#     blob_model.download_to_filename(model_path)
+
+#     # Load tokenizer and model
+#     tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
+#     model = TFPegasusForConditionalGeneration.from_pretrained(model_path)
+
+#     cached_tokenizer = tokenizer
+#     cached_model = model
+
+
 # Load transformer models during application startup
 # load_transformer_models()
 
@@ -89,30 +125,61 @@ def get_youtube_comments(video_url, api_key):
 
     # Get comments
     comments = []
-    nextPageToken = None
+    # nextPageToken = None
 
-    while True:
-        comment_response = (
-            youtube.commentThreads()
-            .list(
-                part="snippet",
-                videoId=video_id,
-                maxResults=100,
-                pageToken=nextPageToken,
-            )
-            .execute()
-        )
+    comment_response = (
+        youtube.commentThreads()
+        .list(part="snippet", videoId=video_id, maxResults=10)
+        .execute()
+    )
 
-        for item in comment_response["items"]:
-            comment = item["snippet"]["topLevelComment"]["snippet"]["textDisplay"]
-            comments.append(comment)
-
-        nextPageToken = comment_response.get("nextPageToken")
-
-        if not nextPageToken:
-            break
+    comments = []
+    for item in comment_response["items"]:
+        comment = item["snippet"]["topLevelComment"]["snippet"]["textDisplay"]
+        comments.append(comment)
 
     return video_title, comments
+
+
+# def get_youtube_comments(video_url, api_key):
+#     # Extract video ID from the URL
+#     video_id = video_url.split("v=")[1]
+
+#     # Create a YouTube API client
+#     youtube = build("youtube", "v3", developerKey=api_key)
+
+#     # Get video details
+#     video_response = youtube.videos().list(part="snippet", id=video_id).execute()
+
+#     video_title = video_response["items"][0]["snippet"]["title"]
+
+#     # Get comments
+#     comments = []
+#     # nextPageToken = None
+
+#     # while True:
+#     #     comment_response = (
+#     #         youtube.commentThreads()
+#     #         .list(
+#     #             part="snippet",
+#     #             videoId=video_id,
+#     #             maxResults=10,
+#     #             pageToken=nextPageToken,
+#     #         )
+#     #         .execute()
+#     #     )
+
+#     #     for item in comment_response["items"]:
+#     #         comment = item["snippet"]["topLevelComment"]["snippet"]["textDisplay"]
+#     #         comments.append(comment)
+
+#     #     nextPageToken = comment_response.get("nextPageToken")
+
+#     #     if not nextPageToken:
+#     #         break
+
+
+#     return video_title, comments
 
 
 @app.route("/analyze_comments", methods=["POST"])
@@ -121,7 +188,7 @@ def analyze_comments():
 
     video_url = request.json.get("video_url")
 
-    api_key = "AIzaSyDOOVneXYot-RYzGBZRAc3IufC7d5kwz-A"
+    api_key = "AIzaSyDeCab2QGoqnTZi_wcMH8XdRqg6Hd91JI4"
 
     video_title, comments = get_youtube_comments(video_url, api_key)
     sentiment_results = []
@@ -190,26 +257,28 @@ def analyze_comments():
     # Store analysis data in session
     session["analysis_data"] = analysis_data
 
-    return redirect(url_for("results"))
+    return jsonify({"redirect_url": url_for("results")})
 
 
-@app.route("/results", methods=["GET"])
+@app.route("/results")
 def results():
     data = session.get("analysis_data", {})
     video_title = data.get("video_title")
     sentiment_counts = data.get("sentiment_counts")
     sorted_comments = data.get("sorted_comments")
-
-    # with open("response.json", encoding="utf-8") as f:  # Assuming UTF-8 encoding
-    #     data = json.load(f)
-    # return data
+    summary_by_sentiment = data.get("summary_by_sentiment")
 
     return render_template(
         "results.html",
         video_title=video_title,
         sentiment_counts=sentiment_counts,
         sorted_comments=sorted_comments,
+        summary_by_sentiment=summary_by_sentiment,
     )
+
+    # Locally
+    # with open("response.json", encoding="utf-8") as f:  # Assuming UTF-8 encoding
+    #     data = json.load(f)
 
 
 @app.route("/download_csv", methods=["POST"])
@@ -226,6 +295,12 @@ def download_csv():
 
 @app.route("/")
 def home():
+    return redirect(url_for("landing"))
+    # return "hello"
+
+
+@app.route("/landing")
+def landing():
     return render_template("index.html")
     # return "hello"
 
