@@ -56,39 +56,6 @@ def load_transformer_models():
     cached_model = model
 
 
-# Googel Cluoud
-
-
-# def load_transformer_models():
-#     global tokenizer, model, cached_tokenizer, cached_model
-
-#     if cached_tokenizer and cached_model:
-#         tokenizer = cached_tokenizer
-#         model = cached_model
-#         return
-
-#     # Initialize GCS client
-#     storage_client = storage.Client()
-
-#     # Access GCS bucket
-#     bucket = storage_client.bucket("your-bucket-name")
-
-#     # Download model files from GCS
-#     blob_tokenizer = bucket.blob("path/to/tokenizer")
-#     blob_model = bucket.blob("path/to/model")
-
-#     tokenizer_path = "/tmp/my_tokenizer"
-#     model_path = "/tmp/my_model"
-
-#     blob_tokenizer.download_to_filename(tokenizer_path)
-#     blob_model.download_to_filename(model_path)
-
-#     # Load tokenizer and model
-#     tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
-#     model = TFPegasusForConditionalGeneration.from_pretrained(model_path)
-
-#     cached_tokenizer = tokenizer
-#     cached_model = model
 
 
 # Load transformer models during application startup
@@ -306,7 +273,7 @@ def landing():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
 
 
 # https://www.youtube.com/watch?v=JyKvwhK5AzA
