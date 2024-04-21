@@ -4,6 +4,18 @@ This cloud-based full-stack app efficiently handles YouTube video links, deliver
 
 [Link to project website](https://mode9-6selajamgq-pd.a.run.app/landing)
 
+Please note that currently the website works for videos having less than 1k comments due to limited memory and computing resource allocation. 
+Below are a few YouTube URLs for quick testing.
+
+https://www.youtube.com/watch?v=ZvTt_G6yB1c
+
+https://www.youtube.com/watch?v=MM4viHa7k4w
+
+https://www.youtube.com/watch?v=CEQtUooCCKo
+
+https://www.youtube.com/watch?v=nGOHLDXCQfI
+
+
 ## Technologies Used
 
 - Python Flask
